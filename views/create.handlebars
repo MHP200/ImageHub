@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col col-8 col-md-6 offset-2 offset-md-3 my-5">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="m-0 py-2">Post an Image</h3>
+            </div>
+            <div class="card-body">
+                {{#if (eq err 'invalid')}}
+                    <div class="alert alert-danger" role="alert">Your request contains invalid data.</div>
+                {{/if}}
+                {{#if failed}}
+                    <div class="alert alert-danger" role="alert">
+                        Failed to upload image.
+                    </div>
+                {{/if}}
+                {{#if invalidFormat}}
+                    <div class="alert alert-danger" role="alert">
+                        Invalid file format. Allowed file formats are .jpg & .png.
+                    </div>
+                {{/if}}
+                <form class="py-2" id="create_form" method="post" action="{{url 'create'}}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" required name="title">
+                        <div class="invalid-feedback">
+                            Title contains invalid characters.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" rows="3" required name="desc"></textarea>
+                        <div class="invalid-feedback">
+                            Description contains invalid characters.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageFile" class="form-label">Image</label>
+                        <input class="form-control" type="file" id="imageFile" required name="image">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="age_chk" required>
+                        <label class="form-check-label" for="age_chk">I accept user policy for posting images.</label>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

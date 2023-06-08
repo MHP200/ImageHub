@@ -1,0 +1,7 @@
+<div class="row">
+    {{#each images}}
+        {{> card img=this}}
+    {{else}}
+        <div class="empty">No images found.</div>
+    {{/each}}
+</div>

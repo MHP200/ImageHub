@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col col-8 col-md-6 offset-2 offset-md-3 my-5">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="m-0 py-2">Register</h3>
+            </div>
+            <div class="card-body">
+                {{#if (eq err 'invalid')}}
+                    <div class="alert alert-danger" role="alert">Your request contains invalid data.</div>
+                {{/if}}
+                {{#if failed}}
+                    <div class="alert alert-danger" role="alert">
+                        Failed to create a new user. Please try later.
+                    </div>
+                {{/if}}
+                {{#if taken}}
+                    <div class="alert alert-danger" role="alert">
+                        Username/email is already taken.
+                    </div>
+                {{/if}}
+                <form class="py-2" id="register_form" action="{{url 'register'}}" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Name</label>
+                        <input name="username" type="text" class="form-control" id="username" required>
+                        <div class="invalid-feedback">
+                            Name must start with a letter and contain at least three characters.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input name="email" type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="password" required>
+                        <div class="invalid-feedback">
+                            Password is not a valid format.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label">Password Confirmation</label>
+                        <input name="password_confirmation" type="password" class="form-control" id="password_confirmation">
+                        <div class="invalid-feedback">
+                            Passwords do not match.
+                        </div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="age_chk" required>
+                        <label class="form-check-label" for="age_chk">I am at least 13 years of age.</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="tos_chk" required>
+                        <label class="form-check-label" for="tos_chk">I accept the Terms of Service and Privacy Rules: TOS and Privacy Rules</label>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                    <div class="mt-3">
+                        Already have an account? <a href="{{url 'login'}}">Login!</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

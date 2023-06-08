@@ -1,0 +1,5 @@
+.idea
+node_modules
+final.pdf
+public/uploads/
+.env

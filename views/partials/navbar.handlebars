@@ -1,0 +1,30 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container d-block">
+        <form method="get" action="{{url 'search'}}">
+            <div class="row">
+                <div class="col d-flex">
+                    <a href="{{url ''}}" class="btn btn-outline-dark me-2">Home</a>
+                    <input name="query" class="form-control me-2" type="search" placeholder="Search ..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </div>
+                <div class="col text-end">
+                    {{#if auth}}
+                        <a href="{{url 'create'}}">
+                            <button type="button" class="btn btn-primary">Post an Image</button>
+                        </a>
+                        <a href="{{url 'logout'}}">
+                            <button type="button" class="btn btn-danger">Logout</button>
+                        </a>
+                    {{else}}
+                        <a href="{{url 'login'}}">
+                            <button type="button" class="btn btn-primary">Login</button>
+                        </a>
+                        <a href="{{url 'register'}}">
+                            <button type="button" class="btn btn-success">Register</button>
+                        </a>
+                    {{/if}}
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col col-8 col-md-6 offset-2 offset-md-3">
+        <div class="card">
+            <img class="card-img-top" src="{{img}}">
+            <div class="card-body">
+                <h4 class="card-title">{{title}}</h4>
+                <h6>Author: {{author}}</h6>
+                <h6>Created at: {{date}}</h6>
+                {{desc}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row pt-3">
+    <div class="col col-8 col-md-6 offset-2 offset-md-3">
+        {{#if comments}}
+            <h3 class="mt-5">Comments</h3>
+        {{/if}}
+        {{#each comments}}
+            <div class="card bg-light comment mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.username}}</h5>
+                    <div class="mb-3 text-secondary font-weight-light">{{format_date this.created_at}}</div>
+                    <p class="card-text">{{this.content}}</p>
+                </div>
+            </div>
+        {{/each}}
+
+        {{#if auth}}
+        <h3 class="mt-5">Write a comment</h3>
+        <form method="post" action="{{post_url}}" id="comment_form">
+            {{#if (eq err 'invalid')}}
+                <div class="alert alert-danger" role="alert">Your request contains invalid data.</div>
+            {{/if}}
+            <div class="form-group mt-3">
+                <textarea class="form-control" id="content" name="content" rows="4" placeholder="Write a comment ..." required></textarea>
+                <div class="invalid-feedback">
+                    Your comment contains invalid characters.
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary mt-3" value="Submit"/>
+        </form>
+        {{/if}}
+    </div>
+</div>
